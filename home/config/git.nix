@@ -4,8 +4,8 @@
     enable = true;
     settings = {
       user = {
-        name = "unlukii3";
-        email = "unlukii3@github.com";
+        name = "unluky3";
+        email = "unluky3@github.com";
       };
       init.defaultBranch = "main";
     };
