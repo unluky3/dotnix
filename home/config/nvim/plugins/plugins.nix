@@ -8,7 +8,7 @@
     ./lualine.nix
     ./cmp.nix
     ./whichkey.nix
-    
+
   ];
 
   programs.nixvim.plugins = {
@@ -25,17 +25,38 @@
     notify.enable = true;
 
     nix.enable = true;
-    lsp.enable = true;
     mason.enable = true;
 
     image.enable = true;
     vimtex.enable = true;
     img-clip.enable = true;
 
-    git-worktree.enable = true;
-    git-conflict.enable = true;
-    gitsigns.enable = true;
-    gitgutter.enable = true;
+    gitsigns = {
+      enable = true;
+      settings = {
+        signcolumn = true;
+        signs = {
+          add = {
+            text = "│";
+          };
+          change = {
+            text = "︳";
+          };
+          changedelete = {
+            text = "✕";
+          };
+          delete = {
+            text = "_";
+          };
+          topdelete = {
+            text = "‾";
+          };
+          untracked = {
+            text = "┆";
+          };
+        };
+      };
+    };
     neogit.enable = true;
     trouble.enable = true;
 

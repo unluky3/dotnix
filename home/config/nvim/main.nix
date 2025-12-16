@@ -1,4 +1,4 @@
-{ inputs, ...}:
+{ inputs, ... }:
 {
   imports = [
     inputs.nixvim.homeModules.nixvim
@@ -26,13 +26,17 @@
     opts = {
       showmode = false;
       statusline = "%f%r";
-      completeopt = ["menuone" "noselect" "noinsert"];
-      fillchars =  { 
+      completeopt = [
+        "menuone"
+        "noselect"
+        "noinsert"
+      ];
+      fillchars = {
         eob = " ";
         vert = " ";
         horiz = " ";
       };
-      number = true;        
+      number = true;
       relativenumber = true;
       signcolumn = "yes";
     };
@@ -40,16 +44,16 @@
     diagnostic.settings.signs = {
       text = {
         ERROR = " ";
-        WARN  = " ";
-        INFO  = " ";
-        HINT  = "󰌵 ";
+        WARN = " ";
+        INFO = " ";
+        HINT = "󰌵 ";
       };
     };
 
     autoCmd = [
       {
         event = [ "BufEnter" ];
-        pattern = "*";         
+        pattern = "*";
         command = ''
           if &filetype ==# "image_nvim" || &buftype ==# "image_nvim"
             setlocal nonumber
@@ -60,7 +64,12 @@
     ];
 
     lsp = {
+
+      enable = true;
+      inlayHints.enable = true;
+
       servers = {
+
         nixd.enable = true;
         ruff.enable = true;
         lua_ls.enable = true;
@@ -71,7 +80,30 @@
         gopls.enable = true;
         jsonls.enable = true;
         yamlls.enable = true;
+
       };
+    };
+
+    plugins = {
+
+      conform-nvim = {
+        enable = true;
+        autoInstall.enable = true;
+        settings = {
+          formatters_by_ft = {
+            nix = [ "nixfmt" ];
+            python = [ "black" ];
+          };
+          format_on_save = "true";
+        };
+      };
+
+      lsp.enable = true;
+      lsp-lines.enable = true;
+      lsp-signature.enable = true;
+      lsp-status.enable = true;
+      luasnip.enable = true;
+
     };
 
   };
