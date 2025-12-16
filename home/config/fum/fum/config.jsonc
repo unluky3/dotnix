@@ -1,0 +1,118 @@
+{
+  "players": [ "org.,pris.MediaPlayer2.mpv", "firefox", "amberol", "kew" ],
+  "use_active_player": true,
+  "fps": 60,
+  "cover_art_ascii": "~/.config/fum/ascii.txt",
+  "align": "center",
+  "direction": "horizontal",
+  "width": 30,
+  "height": 14,
+  "layout": [
+    {
+      "type": "container",
+      "height": 10,
+      "flex": "center",
+      "children": [
+        { "type": "label", "text": "$artists", "align": "left", "direction": "vertical" },
+        { "type": "label", "text": "││││", "align": "left", "direction": "vertical" },
+        { "type": "label", "text": "$title", "align": "left", "truncate": true, "direction": "vertical" },
+        { "type": "empty", "size": 1 },
+        {
+          "type": "container",
+          "direction": "vertical",
+          "width": 20,
+          "height": 15,
+          "children": [
+            {
+              "type": "cover-art",
+              "height": 10,
+              "resize": "scale"
+            },
+            { "type": "label", "text": "─┄┄──┄┄──┄┄──┄┄──┄┄─" },
+            {
+              "type": "container",
+              "direction": "vertical",
+              "height": 4,
+              "flex": "center",
+              "children": [
+                {
+                  "type": "progress",
+                  "direction": "horizontal",
+                  "size": 1,
+                  "progress": { "char": "󰝤" },
+                  "empty": { "char": "󰁱" }
+                },
+                {
+                  "type": "container",
+                  "height": 1,
+                  "width": 21,
+                  "direction": "horizontal",
+                  "flex": "space-between",
+                  "children": [
+                    {
+                      "type": "container",
+                      "height": 1,
+                      "direction": "horizontal",
+                      "flex": "start",
+                      "children": [
+                        { "type": "button", "text": "󰒮", "action": "prev()" },
+                        { "type": "empty", "size": 2 },
+                        { "type": "button", "text": "$status-icon", "action": "play_pause()" },
+                        { "type": "empty", "size": 2 },
+                        { "type": "button", "text": "󰒭", "action": "next()" }
+                      ]
+                    },
+                    {
+                      "type": "container",
+                      "direction": "horizontal",
+                      "flex": "end",
+                      "children": [
+                        { "type": "label", "text": "$position|", "align": "center" },
+                        { "type": "label", "text": "$length", "align": "center" }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        { "type": "empty", "size": 6 },
+        {
+          "type": "container",
+          "width": 4,
+          "children": [
+            {
+              "type": "volume",
+              "direction": "vertical",
+              "volume": { "char": "│" },
+              "empty": { "char": "┊" }
+            },
+            {
+              "type": "container",
+              "direction": "vertical",
+              "children": [
+                {
+                  "type": "container",
+                  "children": [
+                    { "type": "label", "text": "$volume", "truncate": false, "direction": "vertical" }
+                  ]
+                },
+                {
+                  "type": "container",
+                  "direction": "vertical",
+                  "flex": "end",
+                  "children": [
+                    { "type": "button", "text": "󰑐", "action": "loop_cycle()" },
+                    { "type": "button", "text": "󰒝", "action": "shuffle_toggle()" },
+                    { "type": "button", "text": "", "action": "quit()" }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
