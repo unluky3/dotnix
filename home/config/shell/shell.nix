@@ -7,7 +7,6 @@
   home = {
     shell.enableFishIntegration = true;
     shellAliases = {
-      nhs = "nh os switch -H main";
       v = "nvim";
       cl = "clear";
       y = "yazi";
