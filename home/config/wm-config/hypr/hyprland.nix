@@ -1,11 +1,13 @@
 { config, ... }:
-{ 
+{
   imports = [ ./keybinds.nix ];
 
   wayland.windowManager.hyprland = {
     enable = true;
+    package = null;
+    portalPackage = null;
     settings = {
-      
+
       source = [
         "${config.xdg.configHome}/hypr/scheme/current.conf"
       ];
@@ -42,10 +44,10 @@
         border_size = 2;
         gaps_in = 5;
         gaps_out = 15;
-        "col.active_border"   = "rgb(c4a7e7) rgb(26233a) 45deg";
+        "col.active_border" = "rgb(c4a7e7) rgb(26233a) 45deg";
         "col.inactive_border" = "rgb(26233a) rgb(1f1d2e) 45deg";
       };
-      
+
       animations = {
         enabled = true;
         # Animation curves

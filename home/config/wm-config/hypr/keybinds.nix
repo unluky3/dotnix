@@ -68,6 +68,9 @@
       "$mod, right, movefocus, r"
 
       "$mod+shift, f, pseudo, active"
+
+      "$mod, v, exec, caelestia clipboard"
+      "$mod+alt, e, exec, caelestia emoji -p"
     ];
 
     # Caelestia binds
