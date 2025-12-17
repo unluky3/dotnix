@@ -15,7 +15,7 @@
         };
       };
       launcher = {
-        actionPrefix = ";";
+        actionPrefix = ">";
         actions = [
           {
             "name" = "Calculator";
