@@ -1,0 +1,141 @@
+#!/usr/bin/env -S fish --no-config
+
+function printCol
+    set_color $argv[2..-1]
+    echo -en $argv[1]
+    set_color normal
+end
+
+
+
+function printHelp
+    printCol "Usage: " blue -o
+    printCol "nhs" cyan -o; echo -e " <boot> [OPTIONS]\n"
+
+    if set -q NHS_HOST
+        printCol "Current host: " blue -o; echo "$NHS_HOST"
+    else
+        printCol "Current host: " blue -o; echo "\$NHS_HOST is not set"
+    end
+
+    printCol "<boot>:" blue -o
+        echo -n " replace default"
+        printCol " nh os switch" cyan -i
+        echo -n " with"
+        printCol " nh os boot\n\n" cyan -i
+
+    printCol "Options:\n" blue --bold
+        printCol "  -h/--help --------------- " cyan -o; echo "print this message"
+        printCol "  -H/--host --------------- " cyan -o; echo "set the hostname, can also be set with \$NHS_HOST"
+        printCol "  --install-bootloader ---- " cyan -o; echo -n "same as "; printCol "nh os <command> --install-bootloader\n" cyan -i
+
+    exit 0
+end
+
+function ask_confirm -a prompt
+    set response
+    while true
+        read -P "$prompt [Y/n]: " response
+        set response (string lower $response)
+        if test "$response" = "y" -o "$response" = ""
+            return 0
+        else if test "$response" = "n"
+            return 1
+        else
+            echo "Please enter y or n."
+        end
+    end
+end
+
+if set -q NHS_HOST
+    set nhHost $NHS_HOST
+end
+
+for arg in $argv
+    switch $arg
+        case "-h" "--help"
+            printHelp
+        case "boot"
+            set nhCommand "boot"
+        case "--install-bootloader"
+            set nhArg "--install-bootloader"
+        case "-H=*" "--host=*"
+            set nhHost (string split -- "=" "$arg")[2]
+        case "/*" ".*"
+            set nhPath $arg
+    end
+end
+
+if not set -q nhCommand
+    set nhCommand "switch"
+end
+
+if not set -q nhHost
+    set nhHost
+else
+    set nhHost "-H" "$nhHost"
+end
+
+
+if not set -q NH_FLAKE; and not set -q NH_OS_FLAKE
+    printCol "Warning: " yellow --bold
+    echo "neither \$NH_FLAKE or \$NH_OS_FLAKE are set, using $PWD"
+    set nhPath $PWD
+else if set -q NH_FLAKE
+    set nhPath $NH_FLAKE
+else if set -q NH_OS_FLAKE
+    set nhPath NH_OS_FLAKE
+end
+
+printCol "Using path: " magenta
+echo "$nhPath"
+set nhCommand $nhCommand $nhPath
+
+
+cd $nhPath
+
+set gitStatus (git status 2>&1)
+set gitEnable true
+
+
+
+if string match -qr "fatal:" $gitStatus 2>&1
+    printCol "Warning: " yellow --bold
+    echo "not a git repository, disabling git functions..."
+    set gitEnable false
+end
+
+
+
+if $gitEnable
+    git diff -U0 *.nix 
+end
+
+
+if not ask_confirm "Confirm the rebuild?"
+    exit 0
+end
+
+
+
+
+
+if not set -q nhArg
+    set nhArg
+end
+
+
+printCol "Using command: " magenta; echo "nh os $nhCommand $nhHost $nhArg"
+nh "os" $nhCommand $nhHost $nhArg
+
+if not test $status -eq 0
+    exit 1
+end
+
+if $gitEnable
+    if not set -q gitLabel
+        set gitLabel "generation"(nh os info | grep "current")
+    end
+
+    git commit -am "$gitLabel"
+end
