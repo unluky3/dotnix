@@ -13,17 +13,19 @@
     # ./config/fum/fum.nix
   ];
   programs = {
-    
+
     nh = {
       enable = true;
       clean.enable = true;
       flake = "${config.home.homeDirectory}/.nix/";
     };
-    
-    bash.enable    = true;
+
+    direnv.enable = true;
+    bash.enable = true;
     firefox.enable = true;
     ripgrep.enable = true;
     lazygit.enable = true;
+    docker-cli.enable = true;
 
   };
 }

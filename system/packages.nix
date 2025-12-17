@@ -1,7 +1,14 @@
 { pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    lf
-    fzf
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      lf
+      fzf
+    ];
+    variables = {
+      PATH = [
+        ../scripts
+      ];
+    };
+  };
 }

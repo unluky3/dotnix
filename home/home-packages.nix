@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     fum
     blender
@@ -29,5 +30,9 @@
     kittysay
     tree
     playerctl
+    winboat
+    steam
+    docker-compose
+    docker
   ];
 }

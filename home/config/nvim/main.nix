@@ -80,6 +80,7 @@
         gopls.enable = true;
         jsonls.enable = true;
         yamlls.enable = true;
+        bashls.enable = true;
 
       };
     };
@@ -93,6 +94,7 @@
           formatters_by_ft = {
             nix = [ "nixfmt" ];
             python = [ "black" ];
+            bash = [ "shfmt" ];
           };
           format_on_save = "true";
         };

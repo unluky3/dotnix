@@ -3,7 +3,7 @@
   programs.nixvim.plugins.snacks = {
     enable = true;
     settings = {
-      
+
       indent = {
         enable = true;
         animate.enabled = 1;
@@ -28,17 +28,54 @@
               じしf_,)ノ
           '';
           keys = [
-            { icon = " "; key = "ff"; desc = "Files"       ; action = ":Telescope find_files"           ; }
-            { icon = " "; key = "fr"; desc = "Recent files"; action = ":Telescope oldfiles"             ; }
-            { icon = " "; key = "fd"; desc = "Dotfiles"    ; action = ":Telescope find_files cwd=~/.nix"; }
-            { icon = " "; key =  "t"; desc = "Themes"      ; action = ":Telescope colorscheme"          ; }
-            { icon = "󰈆 "; key =  "q"; desc = "Quit"        ; action = ":qa"                            ; }
+            {
+              icon = " ";
+              key = "ff";
+              desc = "Files";
+              action = ":Telescope find_files";
+            }
+            {
+              icon = " ";
+              key = "fr";
+              desc = "Recent files";
+              action = ":Telescope oldfiles";
+            }
+            {
+              icon = " ";
+              key = "fd";
+              desc = "Dotfiles";
+              action = ":Telescope find_files cwd=~/.nix";
+            }
+            {
+              icon = " ";
+              key = "t";
+              desc = "Themes";
+              action = ":Telescope colorscheme";
+            }
+            {
+              icon = "󰈆 ";
+              key = "q";
+              desc = "Quit";
+              action = ":qa";
+            }
           ];
         };
         sections = [
-          { pane = 1; section = "terminal"; cmd = "clear; nitch"; height = 20; }
-          { pane = 2; section = "header"; }
-          { pane = 2; section = "keys"; gap = 1; }
+          {
+            pane = 1;
+            section = "terminal";
+            cmd = "clear; nitch";
+            height = 20;
+          }
+          {
+            pane = 2;
+            section = "header";
+          }
+          {
+            pane = 2;
+            section = "keys";
+            gap = 1;
+          }
         ];
       };
 

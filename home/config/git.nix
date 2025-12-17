@@ -5,7 +5,7 @@
     settings = {
       user = {
         name = "unluky3";
-        email = "unluky3@github.com";
+        email = "levaqa19@gmail.com";
       };
       init.defaultBranch = "main";
     };

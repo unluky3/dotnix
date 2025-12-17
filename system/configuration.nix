@@ -1,17 +1,16 @@
 { pkgs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./packages.nix
-      ./nix.nix
-      ./shell.nix
-      ./programs.nix
-      ./hardware.nix
-      ./boot.nix
-      ./networking.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ./packages.nix
+    ./nix.nix
+    ./shell.nix
+    ./programs.nix
+    ./hardware.nix
+    ./boot.nix
+    ./networking.nix
+  ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -47,9 +46,12 @@
 
   users.users.unlukii = {
     isNormalUser = true;
-    description = "unlukii";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    description = "owner";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
   };
 
   security = {

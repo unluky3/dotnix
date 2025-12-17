@@ -4,7 +4,7 @@
     enable = true;
 
     settings = {
-      
+
       options = {
 
         component_separators = {
@@ -42,9 +42,8 @@
           "filetype"
           "branch"
         ];
-        
-        lualine_x = [ 
-          "encoding"
+
+        lualine_x = [
           "lsp_status"
         ];
         lualine_y = [ "progress" ];
@@ -55,19 +54,41 @@
             separator = {
               left = "";
               right = "";
-            };  
+            };
             icon = " ";
           }
         ];
 
       };
       inactive_sections = {
-        lualine_a = [ "filename" "filetype" ];
-        lualine_b = [];
-        lualine_c = [];
-        lualine_x = [];
-        lualine_y = [];
-        lualine_z = [ "lsp_status" "location" ];
+        lualine_a = [
+          {
+            __unkeyed-1 = "filename";
+            right_padding = 2;
+            separator = {
+              left = "";
+              right = "";
+            };
+            icon = " ";
+          }
+          "filetype"
+        ];
+        lualine_b = [ ];
+        lualine_c = [ ];
+        lualine_x = [ ];
+        lualine_y = [ ];
+        lualine_z = [
+          {
+            __unkeyed-1 = "progress";
+            left_padding = 1;
+            separator = {
+              left = "";
+              right = "";
+            };
+            icon = " ";
+          }
+        ];
+
       };
 
     };
