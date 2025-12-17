@@ -10,24 +10,27 @@ end
 
 function printHelp
     printCol "\nUsage: " blue -o
-    printCol "nhs" cyan -o; echo -e " <boot> [OPTIONS]\n"
+    printCol "nhs " cyan -i; echo -e "(boot) [OPTIONS]\n"
 
     if set -q NHS_HOST
-        printCol "Current host: " blue -o; echo "$NHS_HOST"
+        printCol "Current hostname: " blue -o; echo "$NHS_HOST"
     else
-        printCol "Current host: " blue -o; echo "\$NHS_HOST is not set"
+        printCol "Current hostname: " blue -o; echo "\$NHS_HOST is not set"
     end
 
-    printCol "\n<boot>:" blue -o
-        echo -n " replace default"
+    printCol "\nboot:" blue -o
+        echo -n " replaces default"
         printCol " nh os switch" cyan -i
         echo -n " with"
         printCol " nh os boot\n\n" cyan -i
 
     printCol "Options:\n" blue --bold
-        printCol "  -h/--help --------------- " cyan -o; echo "print this message"
-        printCol "  -H/--host --------------- " cyan -o; echo "set the hostname, can also be set with \$NHS_HOST"
-        printCol "  --install-bootloader ---- " cyan -o; echo -n "same as "; printCol "nh os <command> --install-bootloader\n" cyan -i
+        printCol "  -h/--help -------------------- " cyan -o; echo "print this message"
+        printCol "  -H=[value]/--host=[value] ---- " cyan -o; echo -n "same as "; printCol "nh os <command> -H=[value] " cyan -i; echo "can also be set with \$NHS_HOST"
+        printCol "  -u/--update ------------------ " cyan -o; echo -n "same as "; printCol "nh os <command> --update\n" cyan -i
+        printCol "  --install-bootloader --------- " cyan -o; echo -n "same as "; printCol "nh os <command> --install-bootloader\n" cyan -i
+
+    printCol "\nExample: " blue -o; printCol "nhs boot -H=unlukii --update\n" cyan -i
 
     exit 0
 end
@@ -58,10 +61,14 @@ for arg in $argv
             printHelp
         case "boot"
             set nhCommand "boot"
+
         case "--install-bootloader"
             set nhArg "--install-bootloader"
         case "-H=*" "--host=*"
             set nhHost (string split -- "=" "$arg")[2]
+        case "-u" "--update"
+            set nhUpdate "--update"
+
         case "/*" ".*"
             set nhPath $arg
     end
@@ -79,7 +86,7 @@ end
 
 
 if not set -q NH_FLAKE; and not set -q NH_OS_FLAKE
-    printCol "Warning: " yellow -o
+    printCol "warning: " yellow -o
     echo "neither \$NH_FLAKE or \$NH_OS_FLAKE are set, using $PWD"
     set nhPath $PWD
 else if set -q NH_FLAKE
@@ -88,7 +95,7 @@ else if set -q NH_OS_FLAKE
     set nhPath NH_OS_FLAKE
 end
 
-printCol "Using path: " magenta -o
+printCol "using path: " magenta -o
 echo -e "$nhPath\n"
 set nhCommand $nhCommand $nhPath
 
@@ -101,7 +108,7 @@ set gitEnable true
 
 
 if string match -qr "fatal:" $gitStatus 2>&1
-    printCol "Warning: " yellow -o
+    printCol "warning: " yellow -o
     echo "not a git repository, disabling git functions..."
     set gitEnable false
 end
@@ -109,7 +116,7 @@ end
 
 
 if $gitEnable
-    printCol "Git Diff:\n" magenta -o
+    printCol "git diff:\n" magenta -o
     git diff -U0 
 end
 
@@ -122,10 +129,19 @@ end
 if not set -q nhArg
     set nhArg
 end
+if not set -q nhUpdate
+    set nhUpdate
+end
 
 echo ""
-printCol "Using command: " magenta; echo -e "nh os $nhCommand $nhHost $nhArg\n"
-nh "os" $nhCommand $nhHost $nhArg
+printCol "using command: " magenta -o
+echo -n "nh os "
+for arg in $nhCommand $nhHost $nhArg $nhUpdate
+    echo -n "'$arg' "
+end
+echo -e "\n"
+
+nh "os" $nhCommand $nhHost $nhArg $nhUpdate
 
 if not test $status -eq 0
     exit 1
@@ -134,7 +150,7 @@ end
 if $gitEnable
     printCol "\n> " green; echo "Commiting NixOS configuration"
     if not set -q gitLabel
-        set gitLabel "Generation"(nh os info | grep "current")
+        set gitLabel "Generation "(nh os info | grep "current" | string replace "(current)" "")
     end
     git commit -am "$gitLabel"
 end
