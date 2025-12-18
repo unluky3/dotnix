@@ -70,6 +70,7 @@
       "$mod+shift, f, pseudo, active"
 
       "$mod, v, exec, caelestia clipboard"
+      "$mod, c, exec, caelestia screenshot"
       "$mod+alt, e, exec, caelestia emoji -p"
     ];
 
