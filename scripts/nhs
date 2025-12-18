@@ -142,7 +142,10 @@ if not ask_confirm "Confirm the rebuild?"
     exit 0
 end
 
-
+if $gitEnable
+    printCol "\n> " green; echo "Adding new files"
+    git add .
+end
 
 if not set -q nhArg
     set nhArg
