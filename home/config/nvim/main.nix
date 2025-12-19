@@ -39,6 +39,9 @@
       number = true;
       relativenumber = true;
       signcolumn = "yes";
+      shiftwidth = 2;
+      tabstop = 2;
+      whichwrap = "<,>,h,l,b,s";
     };
 
     diagnostic.settings.signs = {
