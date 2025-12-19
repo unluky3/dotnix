@@ -81,6 +81,7 @@
         jsonls.enable = true;
         yamlls.enable = true;
         bashls.enable = true;
+        qmlls.enable = true;
 
       };
     };
