@@ -34,5 +34,6 @@
     steam
     docker-compose
     docker
+    quickshell
   ];
 }
