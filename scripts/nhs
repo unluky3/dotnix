@@ -31,7 +31,7 @@ function printHelp
         printCol "  -h/--help -------------------------- " cyan -o; echo "print this message"
         printCol "  -m [value] ------------------------- " cyan -o; echo "specify the message for the commit"
         printCol "  -d/--dry --------------------------- " cyan -o; echo -n "cancel execution of "; printCol "nh os <command> " cyan -i; echo -n "and "; printCol "git commit -am \"<message>\"  \n" cyan -i
-        printCol "  -H [value]/--host [value] ---------- " cyan -o; echo -n "same as "; printCol "nh os <command> -H=[value] " cyan -i; echo "can also be set with \$NHS_HOST"
+        printCol "  -H [value]/--host [value] ---------- " cyan -o; echo -n "same as "; printCol "nh os <command> -H [value] " cyan -i; echo "can also be set with \$NHS_HOST"
         printCol "  -u/--update ------------------------ " cyan -o; echo -n "same as "; printCol "nh os <command> --update\n" cyan -i
         printCol "  --install-bootloader --------------- " cyan -o; echo -n "same as "; printCol "nh os <command> --install-bootloader\n" cyan -i
         printCol "  -e [value]/--extra-args [value] ---- " cyan -o; echo -n "add additional arguments at the end of "; printCol "nh os <command> <options> <extra arguments>\n" cyan -i
