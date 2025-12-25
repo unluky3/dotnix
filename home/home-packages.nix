@@ -4,7 +4,7 @@
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     fum
-    blender
+    (blender.override { cudaSupport = true; })
     comma
     youtube-music
     image-roll
