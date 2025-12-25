@@ -234,7 +234,7 @@
         {
           __unkeyed = "<Space>fw";
           icon = {
-            icon = " ";
+            icon = "󰾹 ";
             color = "cyan";
           };
           desc = "Choose colorscheme";

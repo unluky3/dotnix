@@ -24,7 +24,7 @@
       mode = [ "n" ];
     }
     {
-      action = "<cmd>Telescope colorscheme<cr>"; # search for colorschemes
+      action = "<cmd>Telescope live_grep<cr>"; # search for colorschemes
       key = "<Space>fw";
       mode = [ "n" ];
     }
