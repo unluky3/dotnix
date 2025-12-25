@@ -30,7 +30,6 @@
     kittysay
     tree
     playerctl
-    winboat
     steam
     docker-compose
     docker

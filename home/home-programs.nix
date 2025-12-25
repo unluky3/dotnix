@@ -26,7 +26,6 @@
     firefox.enable = true;
     ripgrep.enable = true;
     lazygit.enable = true;
-    docker-cli.enable = true;
 
   };
 }
