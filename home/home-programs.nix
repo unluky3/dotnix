@@ -10,6 +10,7 @@
     ./config/nvim/main.nix
     ./config/btop.nix
     ./config/git.nix
+    ./config/tmux.nix
     # ./config/fum/fum.nix
   ];
   programs = {
