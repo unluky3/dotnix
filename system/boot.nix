@@ -5,16 +5,16 @@
       efi.canTouchEfiVariables = true;
       grub = {
 
-        enable                = true;
-        copyKernels           = true;
-        efiSupport            = true;
-        fsIdentifier          = "label";
+        enable = true;
+        copyKernels = true;
+        efiSupport = true;
+        fsIdentifier = "label";
 
         theme = pkgs.catppuccin-grub;
 
         useOSProber = true;
 
-        devices        = [ "nodev" ];
+        devices = [ "nodev" ];
 
         extraEntries = ''
           menuentry "Reboot" {
@@ -26,7 +26,7 @@
         '';
       };
     };
-   
+
     kernelModules = [
       "v4l2loopback"
       "hid_apple"
@@ -36,6 +36,10 @@
       "nvidia-uvm"
       "nvidia-drm"
       "i915"
+    ];
+
+    blacklistedKernelModules = [
+      "nouveau"
     ];
 
     kernelParams = [

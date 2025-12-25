@@ -1,6 +1,5 @@
 { config, pkgs, ... }:
 {
-  # Set up Nvidia
   hardware = {
     graphics = {
       enable = true;
@@ -9,7 +8,7 @@
         libva
         intel-media-driver
       ];
-    }; 
+    };
 
     nvidia = {
 
@@ -19,10 +18,10 @@
       powerManagement = {
         enable = true;
       };
-      
+
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
-    
+
       prime = {
         sync = {
           enable = true;
@@ -34,10 +33,12 @@
       };
     };
   };
-  # And intel igpu
-  services.xserver.videoDrivers = [ "intel" ];
+  services.xserver.videoDrivers = [
+    "intel"
+    "nvidia"
+    "modesetting"
+  ];
 
-  # Set up windows partitions
   systemd.tmpfiles.rules = [
     "d /Windows        0755 root root -"
     "d /Windows/Data   0755 root root -"
@@ -54,6 +55,5 @@
       fsType = "ntfs";
     };
   };
-
 
 }
