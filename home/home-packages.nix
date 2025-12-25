@@ -34,5 +34,6 @@
     docker-compose
     docker
     quickshell
+    gimp
   ];
 }
