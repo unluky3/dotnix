@@ -20,8 +20,10 @@
       shellInit = ''
         set -g fish_greeting
         clear
-        fastfetch
-        # kittysay "sucsesfully unemployed for $(date +%Y) years :3" -t
+        if [ $TERM = "xterm-kitty" ]
+          fastfetch
+          # kittysay "sucsesfully unemployed for $(date +%Y) years :3" -t
+        end  
       '';
     };
     fzf = {
