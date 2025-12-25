@@ -15,7 +15,16 @@
     ufo.enable = true;
     todo-comments.enable = true;
     colorizer.enable = true;
-    toggleterm.enable = true;
+
+    toggleterm = {
+      enable = true;
+      settings = {
+        float_opts = {
+          border = "curved";
+        };
+      };
+    };
+
     markview.enable = true;
     nvim-autopairs.enable = true;
     guess-indent.enable = true;
