@@ -28,6 +28,11 @@
       key = "<Space>fw";
       mode = [ "n" ];
     }
+    {
+      action = "<cmd>TodoTelescope<cr>"; # search for Todo Actions
+      key = "<Space>fa";
+      mode = [ "n" ];
+    }
 
     # === Buffers ===
     {

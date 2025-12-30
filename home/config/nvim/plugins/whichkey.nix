@@ -38,22 +38,6 @@
           };
           desc = "Comment line";
         }
-        {
-          __unkeyed = "<Space>b";
-          icon = {
-            icon = " ";
-            color = "cyan";
-          };
-          desc = "Comment block";
-        }
-        {
-          __unkeyed = "<Space>b/";
-          icon = {
-            icon = " ";
-            color = "cyan";
-          };
-          desc = "Comment block";
-        }
 
         # === Git ===
         {
@@ -237,7 +221,15 @@
             icon = "󰾹 ";
             color = "cyan";
           };
-          desc = "Choose colorscheme";
+          desc = "Search for words in the working directory";
+        }
+        {
+          __unkeyed = "<Space>fa";
+          icon = {
+            icon = "󰄹 ";
+            color = "cyan";
+          };
+          desc = "Search for TODO actions";
         }
 
       ];
